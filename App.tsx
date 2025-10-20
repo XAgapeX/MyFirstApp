@@ -1,11 +1,27 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 const App: React.FC = () => {
+  const [visible, setVisible] = useState<boolean>(false);
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Pierwsza aplikacja w React Native</Text>
-      <Text style={styles.subtitle}>Zadanie 1</Text>
+      <Text style={styles.header}>Zadanie 2</Text>
+
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => setVisible(!visible)}
+      >
+        <Text style={styles.buttonText}>
+          {visible ? 'Ukryj' : 'Pokaż'}
+        </Text>
+      </TouchableOpacity>
+
+      {visible && (
+        <Text style={styles.text}>
+          Nazywam się <Text style={{ fontWeight: 'bold' }}>Katarzyna Mierzyńska</Text>
+        </Text>
+      )}
     </View>
   );
 };
@@ -17,15 +33,26 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#E8F0FF',
   },
-  title: {
-    fontSize: 22,
-    fontWeight: 'bold',
+  header: {
+    fontSize: 28,
+    marginBottom: 30,
+    fontWeight: '600',
     color: '#222',
   },
-  subtitle: {
+  button: {
+    backgroundColor: '#007AFF',
+    paddingVertical: 10,
+    paddingHorizontal: 25,
+    borderRadius: 10,
+  },
+  buttonText: {
     fontSize: 18,
-    color: '#555',
-    marginTop: 10,
+    color: '#fff',
+  },
+  text: {
+    fontSize: 20,
+    color: '#000',
+    marginTop: 25,
   },
 });
 
